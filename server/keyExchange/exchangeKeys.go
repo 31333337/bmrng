@@ -5,11 +5,11 @@ import (
 	"math/big"
 	"sync"
 
-	"github.com/mirrironline/trellis/config"
-	"github.com/mirrironline/trellis/crypto/ec"
-	"github.com/mirrironline/trellis/network"
-	"github.com/mirrironline/trellis/network/messages"
-	"github.com/mirrironline/trellis/network/synchronization"
+	"https://github.com/31333337/trellis/config"
+	"https://github.com/31333337/trellis/crypto/ec"
+	"https://github.com/31333337/trellis/network"
+	"https://github.com/31333337/trellis/network/messages"
+	"https://github.com/31333337/trellis/network/synchronization"
 )
 
 type KeyExchange struct {

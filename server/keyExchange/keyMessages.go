@@ -4,8 +4,8 @@ import (
 	"encoding/binary"
 	"math/big"
 
-	"github.com/mirrironline/trellis/crypto/ec"
-	"github.com/mirrironline/trellis/errors"
+	"https://github.com/31333337/trellis/crypto/ec"
+	"https://github.com/31333337/trellis/errors"
 )
 
 func SigningCurveScalarAdd(dest *big.Int, src *big.Int) *big.Int {

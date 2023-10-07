@@ -1,8 +1,8 @@
 package checkpoint
 
 import (
-	"github.com/mirrironline/trellis/crypto"
-	"github.com/mirrironline/trellis/crypto/token"
+	"https://github.com/31333337/trellis/crypto"
+	"https://github.com/31333337/trellis/crypto/token"
 )
 
 type CheckpointInfo struct {

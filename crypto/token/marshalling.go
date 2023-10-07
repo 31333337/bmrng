@@ -1,8 +1,8 @@
 package token
 
 import (
-	"github.com/mirrironline/trellis/crypto/pairing"
-	"github.com/mirrironline/trellis/crypto/pairing/mcl"
+	"https://github.com/31333337/trellis/crypto/pairing"
+	"https://github.com/31333337/trellis/crypto/pairing/mcl"
 )
 
 func (t *TokenPublicKey) Len() int {

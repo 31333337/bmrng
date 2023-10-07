@@ -12,7 +12,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/mirrironline/trellis/crypto"
+	"https://github.com/31333337/trellis/crypto"
 )
 
 /*

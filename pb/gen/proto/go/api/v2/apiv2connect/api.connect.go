@@ -8,7 +8,7 @@ import (
 	context "context"
 	errors "errors"
 	connect_go "github.com/bufbuild/connect-go"
-	v2 "github.com/mirrironline/trellis/pb/gen/proto/go/api/v2"
+	v2 "https://github.com/31333337/trellis/pb/gen/proto/go/api/v2"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	http "net/http"
 	strings "strings"

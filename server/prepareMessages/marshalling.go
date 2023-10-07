@@ -3,10 +3,10 @@ package prepareMessages
 import (
 	"encoding/binary"
 
-	"github.com/mirrironline/trellis/crypto"
-	"github.com/mirrironline/trellis/crypto/pairing/mcl"
-	"github.com/mirrironline/trellis/errors"
-	"github.com/mirrironline/trellis/server/common"
+	"https://github.com/31333337/trellis/crypto"
+	"https://github.com/31333337/trellis/crypto/pairing/mcl"
+	"https://github.com/31333337/trellis/errors"
+	"https://github.com/31333337/trellis/server/common"
 )
 
 type NewClientRequest struct {

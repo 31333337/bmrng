@@ -5,11 +5,11 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/mirrironline/trellis/crypto"
-	"github.com/mirrironline/trellis/errors"
-	"github.com/mirrironline/trellis/network"
-	"github.com/mirrironline/trellis/network/messages"
-	"github.com/mirrironline/trellis/server/checkpoint"
+	"https://github.com/31333337/trellis/crypto"
+	"https://github.com/31333337/trellis/errors"
+	"https://github.com/31333337/trellis/network"
+	"https://github.com/31333337/trellis/network/messages"
+	"https://github.com/31333337/trellis/server/checkpoint"
 )
 
 type Job struct {

@@ -4,9 +4,9 @@ import (
 	"context"
 	"io"
 
-	"github.com/mirrironline/trellis/errors"
-	"github.com/mirrironline/trellis/network/messages"
 	"google.golang.org/grpc/metadata"
+	"https://github.com/31333337/trellis/errors"
+	"https://github.com/31333337/trellis/network/messages"
 )
 
 var MockLatency = 0             // millisecond

@@ -1,9 +1,9 @@
 package nizk
 
 import (
-	"github.com/mirrironline/trellis/crypto"
-	"github.com/mirrironline/trellis/crypto/ec"
-	"github.com/mirrironline/trellis/errors"
+	"https://github.com/31333337/trellis/crypto"
+	"https://github.com/31333337/trellis/crypto/ec"
+	"https://github.com/31333337/trellis/errors"
 )
 
 var DL_SIZE = ec.CurveElementSize + ec.ScalarElementSize + crypto.HASH_SIZE

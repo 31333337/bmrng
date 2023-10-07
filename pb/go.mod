@@ -1,4 +1,4 @@
-module github.com/mirrironline/trellis/pb
+module https://github.com/31333337/trellis/pb
 
 go 1.21.1
 

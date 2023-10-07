@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/mirrironline/trellis/errors"
+	"https://github.com/31333337/trellis/errors"
 )
 
 type MockConnNetwork struct {

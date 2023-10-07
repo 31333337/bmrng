@@ -3,10 +3,10 @@ package processMessages
 import (
 	"sync"
 
-	"github.com/mirrironline/trellis/config"
-	"github.com/mirrironline/trellis/crypto"
-	"github.com/mirrironline/trellis/errors"
-	"github.com/mirrironline/trellis/server/common"
+	"https://github.com/31333337/trellis/config"
+	"https://github.com/31333337/trellis/crypto"
+	"https://github.com/31333337/trellis/errors"
+	"https://github.com/31333337/trellis/server/common"
 )
 
 // Information about an established key path

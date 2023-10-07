@@ -8,7 +8,7 @@ import (
 	"github.com/oasisprotocol/curve25519-voi/primitives/ed25519"
 
 	"filippo.io/edwards25519"
-	"github.com/mirrironline/trellis/errors"
+	"https://github.com/31333337/trellis/errors"
 )
 
 type VerificationKey ed25519.PublicKey

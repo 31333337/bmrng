@@ -8,11 +8,11 @@ import (
 	"net/http"
 
 	"github.com/bufbuild/connect-go"
-	apiv2 "github.com/mirrironline/trellis/pb/gen/proto/go/api/v2"
-	"github.com/mirrironline/trellis/pb/gen/proto/go/api/v2/apiv2connect"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	apiv2 "https://github.com/31333337/trellis/pb/gen/proto/go/api/v2"
+	"https://github.com/31333337/trellis/pb/gen/proto/go/api/v2/apiv2connect"
 )
 
 var ErrNeedsImplementation = connect.NewError(connect.CodeUnimplemented, errors.New("needs implementation"))

@@ -1,10 +1,10 @@
 package common
 
 import (
-	"github.com/mirrironline/trellis/crypto/token"
-	"github.com/mirrironline/trellis/network/messages"
+	"https://github.com/31333337/trellis/crypto/token"
+	"https://github.com/31333337/trellis/network/messages"
 
-	"github.com/mirrironline/trellis/crypto"
+	"https://github.com/31333337/trellis/crypto"
 )
 
 // See shuffleMessages.go as well

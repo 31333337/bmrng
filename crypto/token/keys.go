@@ -1,9 +1,9 @@
 package token
 
 import (
-	"github.com/mirrironline/trellis/crypto/pairing"
-	"github.com/mirrironline/trellis/crypto/pairing/kyber_wrap"
-	"github.com/mirrironline/trellis/crypto/pairing/mcl"
+	"https://github.com/31333337/trellis/crypto/pairing"
+	"https://github.com/31333337/trellis/crypto/pairing/kyber_wrap"
+	"https://github.com/31333337/trellis/crypto/pairing/mcl"
 )
 
 type TokenPublicKey struct {

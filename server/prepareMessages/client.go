@@ -4,15 +4,15 @@ import (
 	"bytes"
 	"crypto/rand"
 
-	"github.com/mirrironline/trellis/config"
-	coord "github.com/mirrironline/trellis/coordinator/messages"
-	"github.com/mirrironline/trellis/crypto"
-	"github.com/mirrironline/trellis/crypto/pairing/mcl"
-	"github.com/mirrironline/trellis/crypto/token"
-	"github.com/mirrironline/trellis/errors"
-	"github.com/mirrironline/trellis/network"
-	"github.com/mirrironline/trellis/network/messages"
-	"github.com/mirrironline/trellis/server/common"
+	"https://github.com/31333337/trellis/config"
+	coord "https://github.com/31333337/trellis/coordinator/messages"
+	"https://github.com/31333337/trellis/crypto"
+	"https://github.com/31333337/trellis/crypto/pairing/mcl"
+	"https://github.com/31333337/trellis/crypto/token"
+	"https://github.com/31333337/trellis/errors"
+	"https://github.com/31333337/trellis/network"
+	"https://github.com/31333337/trellis/network/messages"
+	"https://github.com/31333337/trellis/server/common"
 )
 
 type Client struct {

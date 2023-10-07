@@ -3,15 +3,15 @@ package server
 import (
 	"sync"
 
-	"github.com/mirrironline/trellis/crypto"
-	"github.com/mirrironline/trellis/crypto/token"
-	"github.com/mirrironline/trellis/errors"
-	"github.com/mirrironline/trellis/network/messages"
-	"github.com/mirrironline/trellis/network/synchronization"
-	"github.com/mirrironline/trellis/server/checkpoint"
-	"github.com/mirrironline/trellis/server/common"
-	"github.com/mirrironline/trellis/server/keyExchange"
-	"github.com/mirrironline/trellis/server/prepareMessages"
+	"https://github.com/31333337/trellis/crypto"
+	"https://github.com/31333337/trellis/crypto/token"
+	"https://github.com/31333337/trellis/errors"
+	"https://github.com/31333337/trellis/network/messages"
+	"https://github.com/31333337/trellis/network/synchronization"
+	"https://github.com/31333337/trellis/server/checkpoint"
+	"https://github.com/31333337/trellis/server/common"
+	"https://github.com/31333337/trellis/server/keyExchange"
+	"https://github.com/31333337/trellis/server/prepareMessages"
 )
 
 // A server can be part of multiple anytrust groups

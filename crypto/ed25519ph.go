@@ -6,8 +6,8 @@ import (
 	"crypto/sha512"
 	"hash"
 
-	"github.com/mirrironline/trellis/errors"
 	"github.com/oasisprotocol/curve25519-voi/primitives/ed25519"
+	"https://github.com/31333337/trellis/errors"
 )
 
 // Implementation of the ed25519ph (pre-hash), or HashEdDSA algorithm

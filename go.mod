@@ -1,4 +1,4 @@
-module github.com/mirrironline/trellis
+module https://github.com/31333337/trellis
 
 go 1.21.1
 
@@ -6,7 +6,7 @@ require (
 	filippo.io/edwards25519 v1.0.0
 	github.com/alexflint/go-arg v1.4.3
 	github.com/gonum/stat v0.0.0-20181125101827-41a0da705a5b
-	github.com/mirrironline/trellis/pb v0.0.0-20231007205846-8bd30e009506
+	https://github.com/31333337/trellis/pb v0.0.0-20231007205846-8bd30e009506
 	github.com/oasisprotocol/curve25519-voi v0.0.0-20230904125328-1f23a7beb09a
 	go.dedis.ch/kyber/v3 v3.1.0
 	golang.org/x/crypto v0.14.0

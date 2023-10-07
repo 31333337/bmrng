@@ -3,9 +3,9 @@ package common
 import (
 	"encoding/binary"
 
-	"github.com/mirrironline/trellis/crypto"
-	"github.com/mirrironline/trellis/crypto/token"
-	"github.com/mirrironline/trellis/errors"
+	"https://github.com/31333337/trellis/crypto"
+	"https://github.com/31333337/trellis/crypto/token"
+	"https://github.com/31333337/trellis/errors"
 )
 
 func (l *LightningEnvelope) Len() int {

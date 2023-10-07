@@ -2,7 +2,7 @@ version: v1
 managed:
   enabled: true
   go_package_prefix:
-    default: github.com/mirrironline/trellis/pb/gen/proto/go
+    default: https://github.com/31333337/trellis/pb/gen/proto/go
 plugins:
   - plugin: buf.build/protocolbuffers/go:v1.28.1
     opt: paths=source_relative

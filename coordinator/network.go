@@ -11,12 +11,12 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/mirrironline/trellis/client"
-	"github.com/mirrironline/trellis/config"
-	coord "github.com/mirrironline/trellis/coordinator/messages"
-	"github.com/mirrironline/trellis/network"
-	"github.com/mirrironline/trellis/network/messages"
-	"github.com/mirrironline/trellis/server"
+	"https://github.com/31333337/trellis/client"
+	"https://github.com/31333337/trellis/config"
+	coord "https://github.com/31333337/trellis/coordinator/messages"
+	"https://github.com/31333337/trellis/network"
+	"https://github.com/31333337/trellis/network/messages"
+	"https://github.com/31333337/trellis/server"
 )
 
 const (

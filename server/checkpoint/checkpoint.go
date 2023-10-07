@@ -3,11 +3,11 @@ package checkpoint
 import (
 	"sync"
 
-	"github.com/mirrironline/trellis/crypto"
-	"github.com/mirrironline/trellis/errors"
-	"github.com/mirrironline/trellis/network/messages"
-	"github.com/mirrironline/trellis/network/synchronization"
-	"github.com/mirrironline/trellis/server/common"
+	"https://github.com/31333337/trellis/crypto"
+	"https://github.com/31333337/trellis/errors"
+	"https://github.com/31333337/trellis/network/messages"
+	"https://github.com/31333337/trellis/network/synchronization"
+	"https://github.com/31333337/trellis/server/common"
 )
 
 type VerificationKeyTable struct {

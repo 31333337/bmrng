@@ -4,7 +4,7 @@ import (
 	"crypto/rand"
 	"crypto/sha256"
 
-	"github.com/mirrironline/trellis/crypto"
+	"https://github.com/31333337/trellis/crypto"
 )
 
 /*

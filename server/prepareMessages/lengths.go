@@ -1,9 +1,9 @@
 package prepareMessages
 
 import (
-	"github.com/mirrironline/trellis/crypto"
-	"github.com/mirrironline/trellis/crypto/token"
-	"github.com/mirrironline/trellis/server/common"
+	"https://github.com/31333337/trellis/crypto"
+	"https://github.com/31333337/trellis/crypto/token"
+	"https://github.com/31333337/trellis/server/common"
 )
 
 // calculate the size of dummy messages

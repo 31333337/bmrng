@@ -3,9 +3,9 @@ package kyber_wrap
 import (
 	"crypto/cipher"
 
-	"github.com/mirrironline/trellis/crypto/pairing/mcl"
 	"go.dedis.ch/kyber/v3"
 	"go.dedis.ch/kyber/v3/util/random"
+	"https://github.com/31333337/trellis/crypto/pairing/mcl"
 )
 
 // Implement the scalar interface for the group for mcl.Fr

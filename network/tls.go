@@ -13,9 +13,9 @@ import (
 	"sync"
 	"syscall"
 
-	"github.com/mirrironline/trellis/config"
-	"github.com/mirrironline/trellis/crypto"
-	"github.com/mirrironline/trellis/network/messages"
+	"https://github.com/31333337/trellis/config"
+	"https://github.com/31333337/trellis/crypto"
+	"https://github.com/31333337/trellis/network/messages"
 )
 
 // have each connect to half and use bidirectional connections
