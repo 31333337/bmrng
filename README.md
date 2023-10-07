@@ -6,68 +6,39 @@ The following instructions are for an AWS amazon linux 2 AMI
 # Install Guide
 
 ## Dependencies
-this repo and Go `1.16` or later
+this repo and Go `1.20` or later
 
 ### On Ubuntu
 First install your dependencies
 ```sh
 sudo apt install gcc g++ libgmp3-dev cmake openssl-dev
 ```
-after that you can run the following commands to build the mcl library
+### On OSX
+```sh
+brew install gmp cmake openssl
+```
+
+## Building the Commands
+
+First the crypto library
 ```sh
 cd crypto/pairing/mcl/scripts
 export CC=gcc
 export CXX=g++
 ./install-deps.sh
-export LD_LIBRARY_PATH=/usr/local/lib
 ```
-
-### MacOs
-```sh
-brew install gmp cmake openssl
-```
-make sure you have xcode-select installed
-```sh
-xcode-select --install
-```
-
-For osx you will need to install the mcl library manually.
-```sh
-cd crypto/pairing/mcl
-git clone https://github.com/herumi/mcl
-cd mcl
-mkdir build
-cd build
-cmake ..
-make
-```
-
-// everything up to here works but theres an issue with the header files for mcl
-
-
-
-## Getting Protobufs to work
-### MacOS
-if youre building on OS/X use the follwing command:
-```sh
-brew install bufbuild/buf/buf
-```
-
-for everyone else check the [buf docs](https://buf.build/docs/installation)
-## Building the commands
-
+Then the commands themselves
 ```sh
 ( cd cmd/server && go install && go build )
 ( cd cmd/client && go install && go build )
 ( cd cmd/coordinator && go install && go build )
 ```
 
-
 # Usage Guide
 Basic test
 ```
-./coordinator --numusers 100 --numservers 10 --numlayers 10 --groupsize 3 --numgroups 3 --runtype 0
-./coordinator --numusers 100 --numservers 10 --numlayers 10 --groupsize 3 --numgroups 3 --runtype 1
+./cmd/coordinator --numusers 100 --numservers 10 --numlayers 10 --groupsize 3 --numgroups 3 --runtype 0
+./cmd/coordinator --numusers 100 --numservers 10 --numlayers 10 --groupsize 3 --numgroups 3 --runtype 1
 ```
 ### Parameters
 | argument   | meaning                                         |
