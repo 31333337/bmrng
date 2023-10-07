@@ -142,7 +142,7 @@ func SetMapToMode(mode int) error {
 	// #nosec
 	err := C.mclBn_setMapToMode((C.int)(mode))
 	if err != 0 {
-		return fmt.Errorf("SetMapToMode mode=%d\n", mode)
+		return fmt.Errorf("SetMapToMode mode=%d", mode)
 	}
 	return nil
 }

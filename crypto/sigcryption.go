@@ -15,6 +15,7 @@ const NONCE_SIZE = 24
 const SignedMetadataSize = 12
 const SymmetricKeySize = 16
 const Overhead = SIGNATURE_SIZE
+const HASH_SIZE = 32
 
 // ID of receiving party must be signed
 func Nonce(round, layer, destId int) [NONCE_SIZE]byte {
