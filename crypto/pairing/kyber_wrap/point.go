@@ -4,9 +4,9 @@ import (
 	"crypto/cipher"
 	"math/big"
 
+	"github.com/31333337/trellis/crypto/pairing/mcl"
 	"go.dedis.ch/kyber/v3"
 	"go.dedis.ch/kyber/v3/util/random"
-	"https://github.com/31333337/trellis/crypto/pairing/mcl"
 )
 
 // Implement the point interface of Group for the mcl.G2 point

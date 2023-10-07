@@ -7,12 +7,12 @@ import (
 	"log"
 	"net/http"
 
+	apiv1 "github.com/31333337/trellis/pb/gen/proto/go/api/v1"
+	"github.com/31333337/trellis/pb/gen/proto/go/api/v1/apiv1connect"
 	"github.com/bufbuild/connect-go"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
-	apiv1 "https://github.com/31333337/trellis/pb/gen/proto/go/api/v1"
-	"https://github.com/31333337/trellis/pb/gen/proto/go/api/v1/apiv1connect"
 )
 
 var ErrNeedsImplementation = connect.NewError(connect.CodeUnimplemented, errors.New("needs implementation"))

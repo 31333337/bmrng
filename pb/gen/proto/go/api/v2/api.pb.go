@@ -7,8 +7,8 @@
 package apiv2
 
 import (
-	v2 "https://github.com/31333337/trellis/pb/gen/proto/go/log/v2"
-	v1 "https://github.com/31333337/trellis/pb/gen/proto/go/metric/v1"
+	v2 "github.com/31333337/trellis/pb/gen/proto/go/log/v2"
+	v1 "github.com/31333337/trellis/pb/gen/proto/go/metric/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"

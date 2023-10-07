@@ -1,8 +1,8 @@
 package kyber_wrap
 
 import (
+	"github.com/31333337/trellis/crypto/pairing/mcl"
 	"go.dedis.ch/kyber/v3"
-	"https://github.com/31333337/trellis/crypto/pairing/mcl"
 )
 
 type BLS12Suite struct {

@@ -8,11 +8,11 @@ import (
 	"crypto/x509"
 	"sync"
 
+	"github.com/31333337/trellis/config"
+	"github.com/31333337/trellis/errors"
+	"github.com/31333337/trellis/network/messages"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
-	"https://github.com/31333337/trellis/config"
-	"https://github.com/31333337/trellis/errors"
-	"https://github.com/31333337/trellis/network/messages"
 )
 
 type Caller struct {

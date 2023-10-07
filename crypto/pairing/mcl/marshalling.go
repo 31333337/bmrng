@@ -1,6 +1,6 @@
 package mcl
 
-import "https://github.com/31333337/trellis/errors"
+import "github.com/31333337/trellis/errors"
 
 var FR_LEN int
 var G1_LEN int

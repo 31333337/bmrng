@@ -4,10 +4,10 @@ import (
 	"runtime"
 	"sync"
 
-	"https://github.com/31333337/trellis/config"
-	"https://github.com/31333337/trellis/network/buffers"
-	"https://github.com/31333337/trellis/network/messages"
-	"https://github.com/31333337/trellis/server/common"
+	"github.com/31333337/trellis/config"
+	"github.com/31333337/trellis/network/buffers"
+	"github.com/31333337/trellis/network/messages"
+	"github.com/31333337/trellis/server/common"
 )
 
 var numWorkers = runtime.NumCPU()

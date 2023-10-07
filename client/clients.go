@@ -11,14 +11,14 @@ import (
 	"runtime"
 	"sync"
 
-	"https://github.com/31333337/trellis/config"
-	coord "https://github.com/31333337/trellis/coordinator/messages"
-	"https://github.com/31333337/trellis/crypto/token"
-	"https://github.com/31333337/trellis/errors"
-	"https://github.com/31333337/trellis/network"
-	"https://github.com/31333337/trellis/server/common"
-	"https://github.com/31333337/trellis/server/prepareMessages"
-	"https://github.com/31333337/trellis/xtrellis/gateway"
+	"github.com/31333337/trellis/config"
+	coord "github.com/31333337/trellis/coordinator/messages"
+	"github.com/31333337/trellis/crypto/token"
+	"github.com/31333337/trellis/errors"
+	"github.com/31333337/trellis/network"
+	"github.com/31333337/trellis/server/common"
+	"github.com/31333337/trellis/server/prepareMessages"
+	"github.com/31333337/trellis/xtrellis/gateway"
 )
 
 // Simulates multiple clients

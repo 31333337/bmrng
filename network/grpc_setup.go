@@ -10,11 +10,11 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/31333337/trellis/config"
+	coord "github.com/31333337/trellis/coordinator/messages"
+	"github.com/31333337/trellis/network/messages"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
-	"https://github.com/31333337/trellis/config"
-	coord "https://github.com/31333337/trellis/coordinator/messages"
-	"https://github.com/31333337/trellis/network/messages"
 )
 
 func RunServer(handler messages.MessageHandlersServer, coordHandler coord.CoordinatorHandlerServer, servercfgs map[int64]*config.Server, addr string) {

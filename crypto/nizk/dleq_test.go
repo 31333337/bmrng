@@ -8,7 +8,7 @@ import (
 	_ "crypto/sha256"
 	"testing"
 
-	"https://github.com/31333337/trellis/crypto/ec"
+	"github.com/31333337/trellis/crypto/ec"
 )
 
 func setup() (*ec.ScalarElement, *ec.Point, *ec.Point, error) {

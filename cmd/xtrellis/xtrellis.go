@@ -7,15 +7,15 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/31333337/trellis/client"
+	"github.com/31333337/trellis/config"
+	"github.com/31333337/trellis/coordinator"
+	"github.com/31333337/trellis/errors"
+	"github.com/31333337/trellis/network"
+	"github.com/31333337/trellis/server"
+	"github.com/31333337/trellis/xtrellis/gateway"
+	"github.com/31333337/trellis/xtrellis/utils"
 	arg "github.com/alexflint/go-arg"
-	"https://github.com/31333337/trellis/client"
-	"https://github.com/31333337/trellis/config"
-	"https://github.com/31333337/trellis/coordinator"
-	"https://github.com/31333337/trellis/errors"
-	"https://github.com/31333337/trellis/network"
-	"https://github.com/31333337/trellis/server"
-	"https://github.com/31333337/trellis/xtrellis/gateway"
-	"https://github.com/31333337/trellis/xtrellis/utils"
 )
 
 type Args struct {

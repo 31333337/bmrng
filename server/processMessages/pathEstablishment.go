@@ -1,13 +1,13 @@
 package processMessages
 
 import (
-	"https://github.com/31333337/trellis/crypto"
-	"https://github.com/31333337/trellis/crypto/token"
-	"https://github.com/31333337/trellis/errors"
-	"https://github.com/31333337/trellis/network/buffers"
-	"https://github.com/31333337/trellis/network/messages"
-	"https://github.com/31333337/trellis/server/checkpoint"
-	"https://github.com/31333337/trellis/server/common"
+	"github.com/31333337/trellis/crypto"
+	"github.com/31333337/trellis/crypto/token"
+	"github.com/31333337/trellis/errors"
+	"github.com/31333337/trellis/network/buffers"
+	"github.com/31333337/trellis/network/messages"
+	"github.com/31333337/trellis/server/checkpoint"
+	"github.com/31333337/trellis/server/common"
 )
 
 type PathEstablishmentParser struct {

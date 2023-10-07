@@ -27,7 +27,7 @@ with open('ip.list') as f:
         ips.append(line.rstrip('\n'))
 
 gopath = os.getenv('GOPATH')
-src_dir = 'https://github.com/31333337/trellis'
+src_dir = 'github.com/31333337/trellis'
 
 # os.system('go install %s/cmd/coordinator' % (src_dir))
 # os.system('go install %s/cmd/config' % (src_dir))

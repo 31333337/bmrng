@@ -4,10 +4,10 @@ import (
 	"crypto/rand"
 	"encoding/binary"
 
-	"https://github.com/31333337/trellis/config"
-	"https://github.com/31333337/trellis/crypto"
-	"https://github.com/31333337/trellis/crypto/token"
-	"https://github.com/31333337/trellis/network/messages"
+	"github.com/31333337/trellis/config"
+	"github.com/31333337/trellis/crypto"
+	"github.com/31333337/trellis/crypto/token"
+	"github.com/31333337/trellis/network/messages"
 )
 
 type CommonState struct {

@@ -1,9 +1,9 @@
 package processMessages
 
 import (
-	"https://github.com/31333337/trellis/crypto"
-	"https://github.com/31333337/trellis/network/buffers"
-	"https://github.com/31333337/trellis/server/common"
+	"github.com/31333337/trellis/crypto"
+	"github.com/31333337/trellis/network/buffers"
+	"github.com/31333337/trellis/server/common"
 )
 
 type TrusteeRouter struct {

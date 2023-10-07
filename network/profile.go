@@ -8,8 +8,8 @@ import (
 	"sync"
 	"time"
 
-	"https://github.com/31333337/trellis/config"
-	"https://github.com/31333337/trellis/network/messages"
+	"github.com/31333337/trellis/config"
+	"github.com/31333337/trellis/network/messages"
 )
 
 // don't spend too long lol

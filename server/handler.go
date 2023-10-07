@@ -7,12 +7,12 @@ import (
 	"sync"
 	"time"
 
-	"https://github.com/31333337/trellis/config"
-	"https://github.com/31333337/trellis/crypto"
-	"https://github.com/31333337/trellis/errors"
-	"https://github.com/31333337/trellis/network"
-	"https://github.com/31333337/trellis/network/messages"
-	"https://github.com/31333337/trellis/network/synchronization"
+	"github.com/31333337/trellis/config"
+	"github.com/31333337/trellis/crypto"
+	"github.com/31333337/trellis/errors"
+	"github.com/31333337/trellis/network"
+	"github.com/31333337/trellis/network/messages"
+	"github.com/31333337/trellis/network/synchronization"
 )
 
 type Handlers struct {

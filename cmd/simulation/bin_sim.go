@@ -10,13 +10,13 @@ import (
 	"sort"
 	"sync"
 
+	"github.com/31333337/trellis/config"
 	"github.com/alexflint/go-arg"
 	"github.com/gonum/stat"
 	"gonum.org/v1/plot"
 	"gonum.org/v1/plot/plotter"
 	"gonum.org/v1/plot/plotutil"
 	"gonum.org/v1/plot/vg"
-	"https://github.com/31333337/trellis/config"
 )
 
 var args struct {

@@ -7,10 +7,10 @@ import (
 	//	"os"
 	"fmt"
 
-	"https://github.com/31333337/trellis/client"
-	"https://github.com/31333337/trellis/config"
-	"https://github.com/31333337/trellis/errors"
-	"https://github.com/31333337/trellis/network"
+	"github.com/31333337/trellis/client"
+	"github.com/31333337/trellis/config"
+	"github.com/31333337/trellis/errors"
+	"github.com/31333337/trellis/network"
 )
 
 func main() {

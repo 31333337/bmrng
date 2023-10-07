@@ -3,12 +3,12 @@ package prepareMessages
 import (
 	"sync"
 
-	"https://github.com/31333337/trellis/crypto"
-	"https://github.com/31333337/trellis/errors"
-	"https://github.com/31333337/trellis/network/messages"
-	"https://github.com/31333337/trellis/server/common"
+	"github.com/31333337/trellis/crypto"
+	"github.com/31333337/trellis/errors"
+	"github.com/31333337/trellis/network/messages"
+	"github.com/31333337/trellis/server/common"
 
-	"https://github.com/31333337/trellis/crypto/token"
+	"github.com/31333337/trellis/crypto/token"
 )
 
 type MessagePreparer struct {

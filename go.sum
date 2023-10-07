@@ -51,8 +51,8 @@ github.com/google/go-cmp v0.5.5/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/
 github.com/google/go-cmp v0.5.9 h1:O2Tfq5qg4qc4AmwVlvv0oLiVAGB7enBSJ2x2DqQFi38=
 github.com/google/go-cmp v0.5.9/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
 github.com/kisielk/gotool v1.0.0/go.mod h1:XhKaO+MFFWcvkIS/tQcRk01m1F5IRFswLeQ+oQHNcck=
-https://github.com/31333337/trellis/pb v0.0.0-20231007205846-8bd30e009506 h1:8JNZVPaPAaODJNENDTDLQ3Lo9dt28g6G1W6cFuVJxDc=
-https://github.com/31333337/trellis/pb v0.0.0-20231007205846-8bd30e009506/go.mod h1:t9N2TWH9o5oHOqZNB7MI62nHUKKtwJ2qaxHg0daxEmo=
+github.com/31333337/trellis/pb v0.0.0-20231007205846-8bd30e009506 h1:8JNZVPaPAaODJNENDTDLQ3Lo9dt28g6G1W6cFuVJxDc=
+github.com/31333337/trellis/pb v0.0.0-20231007205846-8bd30e009506/go.mod h1:t9N2TWH9o5oHOqZNB7MI62nHUKKtwJ2qaxHg0daxEmo=
 github.com/oasisprotocol/curve25519-voi v0.0.0-20230904125328-1f23a7beb09a h1:dlRvE5fWabOchtH7znfiFCcOvmIYgOeAS5ifBXBlh9Q=
 github.com/oasisprotocol/curve25519-voi v0.0.0-20230904125328-1f23a7beb09a/go.mod h1:hVoHR2EVESiICEMbg137etN/Lx+lSrHPTD39Z/uE+2s=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=

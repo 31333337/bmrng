@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	gatewayv1 "https://github.com/31333337/trellis/pb/gen/proto/go/gateway/v1"
+	gatewayv1 "github.com/31333337/trellis/pb/gen/proto/go/gateway/v1"
 )
 
 func TestMessageQueue(t *testing.T) {

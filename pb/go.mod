@@ -1,4 +1,4 @@
-module https://github.com/31333337/trellis/pb
+module github.com/31333337/trellis/pb
 
 go 1.21.1
 
