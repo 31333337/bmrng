@@ -9,7 +9,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/31333337/bmrng/go/0kn/pkg/utils"
+	"github.com/31333337/bmrng/go/0kn/pkg/logger"
 	"github.com/31333337/bmrng/go/trellis/config"
 	coord "github.com/31333337/bmrng/go/trellis/coordinator/messages"
 	"github.com/31333337/bmrng/go/trellis/network/messages"
@@ -18,37 +18,31 @@ import (
 )
 
 func RunServer(handler messages.MessageHandlersServer, coordHandler coord.CoordinatorHandlerServer, servercfgs map[int64]*config.Server, addr string) {
-	logger := utils.GetLogger()
-	sugar := logger.Sugar()
-	defer sugar.Sync()
+	defer logger.Sugar.Sync()
+
 	server := StartServer(handler, coordHandler, servercfgs, addr)
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 	<-sigs
 	server.Stop()
-	sugar.Infof("Server stopped",
+	logger.Sugar.Infow("Server stopped",
 		"address", addr,
 	)
 }
 
 func StartServer(handler messages.MessageHandlersServer, coordHandler coord.CoordinatorHandlerServer, servercfgs map[int64]*config.Server, addr string) *grpc.Server {
-	logger := utils.GetLogger()
-	sugar := logger.Sugar()
-	defer sugar.Sync()
+	defer logger.Sugar.Sync()
+
 	id, myCfg := FindConfig(addr, servercfgs)
 	if id < 0 {
-		sugar.Fatalf("Could not find %s", addr)
-		sugar.Sync()
-		panic("Could not find " + addr)
+		logger.Sugar.Fatalf("Could not find %s", addr)
 	}
 	cert, err := tls.X509KeyPair(myCfg.Identity, myCfg.PrivateIdentity)
 	if err != nil {
-		sugar.Fatalw(
+		logger.Sugar.Fatalw(
 			"error generating X509 Key Pair",
 			"error", err,
 		)
-		sugar.Sync()
-		panic(err)
 	}
 	cred := credentials.NewServerTLSFromCert(&cert)
 	grpcServer := grpc.NewServer(grpc.Creds(cred),
@@ -61,25 +55,25 @@ func StartServer(handler messages.MessageHandlersServer, coordHandler coord.Coor
 	}
 	lis, err := net.Listen("tcp", config.Port(addr))
 	if err != nil {
-		sugar.Fatalw("Server could not listen over tcp",
-			"addr", addr,
-			"err", err,
+		logger.Sugar.Fatalw("Server could not listen over tcp",
+			"address", addr,
+			"error", err,
 		)
-		sugar.Sync()
-		panic(err)
 	}
 
 	go func() {
 		err := grpcServer.Serve(lis)
 		if err != nil && err != grpc.ErrServerStopped {
-			sugar.Fatalf("grpcServer err: %v", err)
-			sugar.Sync()
-			panic(err)
+			logger.Sugar.Fatalw("grpcServer error",
+				"error", err,
+			)
 		}
 	}()
-	sugar.Infow("Server started",
+
+	logger.Sugar.Infow("Server started",
 		"address", addr,
 	)
+
 	return grpcServer
 }
 

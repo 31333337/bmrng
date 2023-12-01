@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/csv"
 	"fmt"
-	"log"
 	"os"
 	"os/signal"
 	"sync"
@@ -13,6 +12,7 @@ import (
 	arg "github.com/alexflint/go-arg"
 
 	"github.com/31333337/bmrng/go/0kn/pkg/gateway"
+	"github.com/31333337/bmrng/go/0kn/pkg/logger"
 	"github.com/31333337/bmrng/go/0kn/pkg/utils"
 	"github.com/31333337/bmrng/go/trellis/config"
 	"github.com/31333337/bmrng/go/trellis/coordinator"
@@ -30,10 +30,6 @@ const (
 )
 
 func LaunchCoordinator(args ArgsCoordinator, argParser *arg.Parser) {
-	logger := utils.GetLogger()
-	sugar := logger.Sugar()
-	defer sugar.Sync()
-	sugar.Info("Started Launch Coordinator")
 	processArgs(&args, argParser)
 
 	switch {
@@ -49,9 +45,7 @@ func LaunchCoordinator(args ArgsCoordinator, argParser *arg.Parser) {
 }
 
 func processArgs(args *ArgsCoordinator, argParser *arg.Parser) {
-	logger := utils.GetLogger()
-	sugar := logger.Sugar()
-	defer sugar.Sync()
+	defer logger.Sugar.Sync()
 
 	if args.GroupSize == 0 {
 		if args.F != 0 {
@@ -61,8 +55,8 @@ func processArgs(args *ArgsCoordinator, argParser *arg.Parser) {
 				args.GroupSize, args.NumGroups = config.CalcFewGroups2(args.F, args.NumServers)
 			}
 		} else {
-			sugar.Infof("Set groupsize or f")
 			argParser.WriteHelp(os.Stdout)
+			logger.Sugar.Fatal("Error: set groupsize or f")
 			return
 		}
 	}
@@ -76,8 +70,8 @@ func processArgs(args *ArgsCoordinator, argParser *arg.Parser) {
 		if args.F != 0 {
 			args.NumLayers = config.NumLayers(args.NumUsers, args.F)
 		} else {
-			sugar.Infof("Set numlayers or f")
 			argParser.WriteHelp(os.Stdout)
+			logger.Sugar.Fatal("Error: set numlayers or f")
 			return
 		}
 	}
@@ -102,13 +96,15 @@ func processArgs(args *ArgsCoordinator, argParser *arg.Parser) {
 		args.NumClientServers = 0
 	}
 
-	sugar.Infow(
-		"args passed to xtrellis",
-		"args: %v", args,
+	logger.Sugar.Infow(
+		"xtrellis args",
+		"args", args,
 	)
 }
 
 func setupNetwork(args ArgsCoordinator) *coordinator.CoordinatorNetwork {
+	defer logger.Sugar.Sync()
+
 	var net *coordinator.CoordinatorNetwork
 
 	switch args.NetworkType {
@@ -128,13 +124,19 @@ func setupNetwork(args ArgsCoordinator) *coordinator.CoordinatorNetwork {
 		// TODO: improve public/private config generation
 		serverPrivateFile := args.ServerPrivateFile
 		if err := config.MarshalServersToFile(serverPrivateFile, serverConfigs); err != nil {
-			log.Fatalf("Could not write private servers file %s: %v", serverPrivateFile, err)
+			logger.Sugar.Fatalw("Could not write private servers file",
+				"file", serverPrivateFile,
+				"error", err,
+			)
 		}
 
 		if args.LoadMessages {
 			oldServers, err := config.UnmarshalServersFromFile(args.ServerFile)
 			if err != nil {
-				log.Fatalf("Could not read servers file %s", args.ServerFile)
+				logger.Sugar.Fatalw("Could not read servers file",
+					"file", args.ServerFile,
+					"error", err,
+				)
 			}
 			// copy old keys
 			for id, s := range serverConfigs {
@@ -158,6 +160,10 @@ func setupNetwork(args ArgsCoordinator) *coordinator.CoordinatorNetwork {
 }
 
 func runExperiment(args ArgsCoordinator) {
+	defer logger.Sugar.Sync()
+
+	logger.Sugar.Info("Launching coordinator experiment")
+
 	net := setupNetwork(args)
 	if args.NetworkType == NETWORK_TYPE_LOCAL || args.NetworkType == NETWORK_TYPE_REMOTE {
 		defer net.KillAll()
@@ -176,8 +182,6 @@ func runExperiment(args ArgsCoordinator) {
 	l := 0
 	if !args.SkipPathGen {
 		for i := 0; i < numLayers; i++ {
-			log.Printf("\n")
-			log.Printf("Round %v", i)
 			exp := c.NewExperiment(i, numLayers, numServers, numMessages, args)
 			if i == 0 {
 				exp.KeyGen = !args.LoadMessages
@@ -191,7 +195,7 @@ func runExperiment(args ArgsCoordinator) {
 			if args.BinSize > 0 {
 				exp.Info.BinSize = int64(args.BinSize)
 			} else if i == 0 {
-				log.Printf("Using bin size %d", exp.Info.BinSize)
+				logger.Sugar.Infof("Using bin size %d", exp.Info.BinSize)
 			}
 
 			if args.LimitSize > 0 {
@@ -209,10 +213,13 @@ func runExperiment(args ArgsCoordinator) {
 
 			err := c.DoAction(exp)
 			if err != nil {
-				log.Print(err)
+				logger.Sugar.Error(err)
 				return
 			}
-			log.Printf("Path round %v took %v", i, time.Since(exp.ExperimentStartTime))
+			logger.Sugar.Infow("Path establishment round complete",
+				"round", i,
+				"time", time.Since(exp.ExperimentStartTime),
+			)
 			exp.RecordToFile(args.OutFile)
 		}
 		l = numLayers
@@ -220,8 +227,6 @@ func runExperiment(args ArgsCoordinator) {
 
 	numLightning := 5
 	for i := l; i < l+numLightning; i++ {
-		log.Printf("\n")
-		log.Printf("Round %v", i)
 		exp := c.NewExperiment(i, numLayers, numServers, numMessages, args)
 		exp.Info.PathEstablishment = false
 		exp.Info.MessageSize = int64(args.MessageSize)
@@ -236,20 +241,25 @@ func runExperiment(args ArgsCoordinator) {
 		exp.Info.Interval = int64(args.Interval)
 		err := c.DoAction(exp)
 		if err != nil {
-			log.Print(err)
+			logger.Sugar.Error(err)
 			return
 		}
-		log.Printf("Lightning round %v took %v", i, time.Since(exp.ExperimentStartTime))
+		logger.Sugar.Infow("Lightning round complete",
+			"round", i,
+			"time", time.Since(exp.ExperimentStartTime),
+		)
 		exp.RecordToFile(args.OutFile)
 	}
 }
 
 func runMixnet(args ArgsCoordinator) {
-	log.Printf("Running mix-net...")
+	defer logger.Sugar.Sync()
+
+	logger.Sugar.Info("Launching coordinator mix-net")
 
 	// setup gateway and start proxy if enabled
 	if args.MessageSize <= int(gateway.GetMaxProtocolSize()) {
-		log.Fatal("Error: MessageSize too small for Gateway packet protocol")
+		logger.Sugar.Fatal("Error: MessageSize too small for Gateway packet protocol")
 	}
 	gateway.Init(
 		int64(args.MessageSize),
@@ -291,7 +301,7 @@ func runMixnet(args ArgsCoordinator) {
 		if args.BinSize > 0 {
 			exp.Info.BinSize = int64(args.BinSize)
 		} else if i == 0 {
-			log.Printf("Using bin size %d", exp.Info.BinSize)
+			logger.Sugar.Infof("Using bin size %d", exp.Info.BinSize)
 		}
 
 		if args.LimitSize > 0 {
@@ -309,10 +319,13 @@ func runMixnet(args ArgsCoordinator) {
 
 		err := c.DoAction(exp)
 		if err != nil {
-			log.Print(err)
+			logger.Sugar.Error(err)
 			return
 		}
-		log.Printf("Path round %v took %v", i, time.Since(exp.ExperimentStartTime))
+		logger.Sugar.Infow("Path establishment round complete",
+			"round", i,
+			"time", time.Since(exp.ExperimentStartTime),
+		)
 		exp.RecordToFile(args.OutFile)
 	}
 
@@ -324,10 +337,10 @@ func runMixnet(args ArgsCoordinator) {
 	signal.Notify(ctrl, os.Interrupt, syscall.SIGTERM)
 	go func() {
 		<-ctrl
-		log.Println("Exiting")
+		logger.Sugar.Info("Exiting")
 		os.Exit(1)
 	}()
-	log.Println("Coordinator running... CTRL-C to exit.")
+	logger.Sugar.Info("Coordinator running... CTRL-C to exit.")
 
 	//////////////////////////////////////////////////////
 	// continually run lightning rounds to transmit messages
@@ -353,7 +366,7 @@ func runMixnet(args ArgsCoordinator) {
 
 		err := c.DoAction(exp)
 		if err != nil {
-			log.Print(err)
+			logger.Sugar.Error(err)
 			return
 		}
 
@@ -362,7 +375,10 @@ func runMixnet(args ArgsCoordinator) {
 		// print time stats
 		c := 10 // print cycle, so terminal not too busy
 		if i%c == 0 {
-			log.Printf("Lightning round %v : %s", i, stats.GetStatsString())
+			logger.Sugar.Infow("Lightning round complete",
+				"round", i,
+				"stats", stats.GetStatsString(),
+			)
 		}
 
 		exp.RecordToFile(args.OutFile)
@@ -377,6 +393,8 @@ func runMixnet(args ArgsCoordinator) {
 // the public aspects
 // TODO: client servers
 func runConfigGenerator(args ArgsCoordinator) {
+	defer logger.Sugar.Sync()
+
 	hosts := readHostsfile(args.Config.HostsFile)
 
 	// hosts --> servers (to match trellis function expectations)
@@ -395,7 +413,7 @@ func runConfigGenerator(args ArgsCoordinator) {
 			defer wg.Done()
 			cmd := fmt.Sprintf("xtrellis server config --addr %s", s.Address)
 			if !coordinator.RunRemoteCommandOnEach(map[int64]*config.Server{int64(0): s}, cmd) {
-				log.Fatalf("Could not run command `%s` on host %s", cmd, s.Address)
+				logger.Sugar.Fatalf("Could not run command `%s` on host %s", cmd, s.Address)
 			}
 		}(s)
 	}
@@ -404,14 +422,14 @@ func runConfigGenerator(args ArgsCoordinator) {
 	// create a temp dir to store public server config files
 	tmpDir, err := os.MkdirTemp("", "xtrellis-")
 	if err != nil {
-		log.Fatalf("Could not create temp dir: %v", err)
+		logger.Sugar.Fatalf("Could not create temp dir: %v", err)
 	}
 	defer os.RemoveAll(tmpDir)
 
 	// retrieve public server config from each host
 	fn := getWorkingDirectory() + "/" + args.ServerPublicFile
 	if !coordinator.TransferFileFromAllServers(remoteServers, fn, tmpDir) {
-		log.Fatalf("Could not transfer file %s from all servers", fn)
+		logger.Sugar.Fatalf("Could not transfer file %s from all servers", fn)
 	}
 
 	// merge public server config from each host
@@ -421,7 +439,10 @@ func runConfigGenerator(args ArgsCoordinator) {
 		ids = append(ids, int64(id))
 		s, err := config.UnmarshalServersFromFile(tmpDir + "/" + host + "-" + args.ServerPublicFile)
 		if err != nil {
-			log.Fatalf("Could not read servers file %v", err)
+			logger.Sugar.Fatalf("Could not read servers file",
+				"file", args.ServerPublicFile,
+				"error", err,
+			)
 		}
 		for _, s2 := range s {
 			s2.Id = int64(id)
@@ -431,25 +452,36 @@ func runConfigGenerator(args ArgsCoordinator) {
 
 	err = config.MarshalServersToFile(args.ServerFile, servers)
 	if err != nil {
-		log.Fatalf("Could not write servers file %s", args.ServerFile)
+		logger.Sugar.Fatalf("Could not write servers file",
+			"file", args.ServerFile,
+			"error", err,
+		)
 	}
 
 	groups := config.CreateSeparateGroupsWithSize(args.NumGroups, args.GroupSize, ids)
 	err = config.MarshalGroupsToFile(args.GroupFile, groups)
 	if err != nil {
-		log.Fatalf("Could not write group file %s", args.GroupFile)
+		logger.Sugar.Fatalf("Could not write group file",
+			"file", args.GroupFile,
+			"error", err,
+		)
 	}
 }
 
 func readHostsfile(fn string) []string {
 	ifile, err := os.Open(fn)
 	if err != nil {
-		log.Fatalf("Could not open %s", fn)
+		logger.Sugar.Fatalw("Could not open hosts file",
+			"file", fn,
+			"error", err,
+		)
 	}
 	reader := csv.NewReader(ifile)
 	hosts, err := reader.ReadAll()
 	if err != nil {
-		log.Fatal("Could not read the list of hosts")
+		logger.Sugar.Fatalw("Could not read the list of hosts",
+			"error", err,
+		)
 	}
 	ifile.Close()
 

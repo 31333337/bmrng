@@ -1,10 +1,8 @@
 package main
 
 import (
-	"log"
-
 	"github.com/31333337/bmrng/go/0kn/internal/conf"
-	"github.com/31333337/bmrng/go/0kn/pkg/utils"
+	"github.com/31333337/bmrng/go/0kn/pkg/logger"
 	"github.com/31333337/bmrng/go/trellis/config"
 	"github.com/31333337/bmrng/go/trellis/errors"
 	"github.com/31333337/bmrng/go/trellis/network"
@@ -22,6 +20,7 @@ func LaunchServer(args ArgsServer) {
 
 // from trellis/cmd/server/
 func runServer(args ArgsServer) {
+	defer logger.Sugar.Sync()
 
 	serversFile := args.ServerFile
 	groupsFile := args.GroupFile
@@ -29,35 +28,32 @@ func runServer(args ArgsServer) {
 	serverPrivateFile := args.ServerPrivateFile
 	errors.Addr = addr
 
-	logger := utils.GetLogger()
-	sugar := logger.Sugar()
-	defer sugar.Sync()
-	sugar.Infow(
+	logger.Sugar.Infow(
 		"Launching server",
-		"address %s", addr,
+		"address", addr,
 	)
 
 	servers, err := config.UnmarshalServersFromFile(serversFile)
 	if err != nil {
-		sugar.Fatalf("Could not read servers file %s", serversFile)
+		logger.Sugar.Fatalf("Could not read servers file %s", serversFile)
 	}
 
 	// find server id by address in public config
 	id, _ := network.FindConfig(addr, servers)
 	if id < 0 {
-		sugar.Fatalf("Could not find %s in servers file", addr)
+		logger.Sugar.Fatalf("Could not find %s in servers file", addr)
 	}
 
 	// load private server config
 	serversPrivate, err := config.UnmarshalServersFromFile(serverPrivateFile)
 	if err != nil {
-		sugar.Fatalf("Could not read private servers file %s: %v", serverPrivateFile, err)
+		logger.Sugar.Fatalf("Could not read private servers file %s: %v", serverPrivateFile, err)
 	}
 
 	// find server config by address in private config
 	_, cfg := network.FindConfig(addr, serversPrivate)
 	if cfg == nil {
-		sugar.Fatalf("Could not find %s in private servers file", addr)
+		logger.Sugar.Fatalf("Could not find %s in private servers file", addr)
 	}
 
 	// replace public config with private (complete) config
@@ -66,7 +62,7 @@ func runServer(args ArgsServer) {
 
 	groups, err := config.UnmarshalGroupsFromFile(groupsFile)
 	if err != nil {
-		sugar.Fatalf("Could not read group file %s: %v", groupsFile, err)
+		logger.Sugar.Fatalf("Could not read group file %s: %v", groupsFile, err)
 	}
 
 	// will start in blocked state
@@ -84,13 +80,19 @@ func runServer(args ArgsServer) {
 }
 
 func runServerConfigGenerator(args ArgsServer) {
+	defer logger.Sugar.Sync()
+
 	addr := args.Addr
 
 	err := conf.LocalServerConfigSet(addr, args.ServerPrivateFile, args.ServerPublicFile)
 	if err != nil {
-		log.Printf("Could not create server config for address %s", addr)
-		log.Fatalf("%v", err)
+		logger.Sugar.Fatalw("Could not create server config",
+			"file-private", args.ServerPrivateFile,
+			"file-public", args.ServerPublicFile,
+			"address", addr,
+			"error", err,
+		)
 	}
 
-	log.Printf("Created server config for address %s", addr)
+	logger.Sugar.Infof("Created server config for address %s", addr)
 }
