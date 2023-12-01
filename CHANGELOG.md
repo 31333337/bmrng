@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.0.2](https://github.com/31333337/bmrng/compare/v0.0.1...v0.0.2) (2023-12-01)
+
+
+### Features
+
+* Extract logger pkg, add timestamps ([#46](https://github.com/31333337/bmrng/issues/46)) ([3ab5588](https://github.com/31333337/bmrng/commit/3ab55881a4725b59d022f2414e6ac71b677c2258))
+* Init leveled logging ([#45](https://github.com/31333337/bmrng/issues/45)) ([240e8cb](https://github.com/31333337/bmrng/commit/240e8cbc5113715cbdd01273d3fff162b7a1a82c))
+* Private server config ([#44](https://github.com/31333337/bmrng/issues/44)) ([e814dfe](https://github.com/31333337/bmrng/commit/e814dfefd15f9eec84756e8bf3b5a98cd42ab975))
+* Runtime directory ([#42](https://github.com/31333337/bmrng/issues/42)) ([433225e](https://github.com/31333337/bmrng/commit/433225eb05417f89e519798f299e6e644af7cb7c))
+
 ## 0.0.1 (2023-11-01)
 
 
